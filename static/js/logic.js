@@ -23,8 +23,8 @@ $.getJSON(link, function(data) {
 
 function createFeatures(earthquakeData) {
 
-    // Define a function we want to run once for each feature in the features array
-    // Give each feature a popup describing the place and time of the earthquake
+    // Define functions to run for each feature in the features array
+    // Size and color the marker of each earthquake
     function onEachFeatureCircle(feature, layer) {
         return new L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
                 radius: markerSize(feature.properties.mag),
@@ -36,6 +36,7 @@ function createFeatures(earthquakeData) {
             });
     }
 
+    // Give each feature a popup describing the place and time of the earthquake
     function onEachFeaturePopup(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.place +
             "</h3><hr><p>" + new Date(feature.properties.time) +
